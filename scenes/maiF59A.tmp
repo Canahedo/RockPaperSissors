@@ -1,0 +1,117 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5ep0fjvlanpq"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_bu0fw"]
+[ext_resource type="PackedScene" uid="uid://d2p68bhstj5h4" path="res://scenes/selection_announcer.tscn" id="2_2n17x"]
+[ext_resource type="PackedScene" uid="uid://wruo3japrtlb" path="res://scenes/player_button.tscn" id="2_lscts"]
+[ext_resource type="Script" path="res://scenes/selection_announcer.gd" id="3_b20a6"]
+[ext_resource type="ButtonGroup" uid="uid://n5j1pg4b1k1t" path="res://scenes/new_button_group.tres" id="5_wuawq"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_bu0fw")
+button_group = ExtResource("5_wuawq")
+
+[node name="Play_Area" type="Node2D" parent="."]
+position = Vector2(400, 25)
+
+[node name="You_Picked" type="Label" parent="Play_Area"]
+visible = false
+offset_top = 50.0
+offset_right = 200.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 30
+text = "You picked"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Selection_Announcer" parent="Play_Area" instance=ExtResource("2_2n17x")]
+offset_top = 100.0
+offset_right = 200.0
+offset_bottom = 150.0
+theme_override_font_sizes/font_size = 35
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_b20a6")
+
+[node name="Winner" type="Label" parent="Play_Area"]
+visible = false
+offset_top = 200.0
+offset_right = 200.0
+offset_bottom = 250.0
+theme_override_font_sizes/font_size = 30
+text = "You win!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Opp_Picked" type="Label" parent="Play_Area"]
+visible = false
+offset_top = 300.0
+offset_right = 200.0
+offset_bottom = 350.0
+theme_override_font_sizes/font_size = 30
+text = "They picked"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Opp_Selection" type="Label" parent="Play_Area"]
+offset_top = 350.0
+offset_right = 200.0
+offset_bottom = 400.0
+theme_override_font_sizes/font_size = 35
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Plr_Buttons" type="Node2D" parent="."]
+position = Vector2(50, 50)
+
+[node name="Rock_Btn" parent="Plr_Buttons" instance=ExtResource("2_lscts")]
+toggle_mode = true
+button_group = ExtResource("5_wuawq")
+text = "Rock"
+
+[node name="Paper_btn" parent="Plr_Buttons" instance=ExtResource("2_lscts")]
+offset_top = 150.0
+offset_bottom = 250.0
+toggle_mode = true
+button_group = ExtResource("5_wuawq")
+text = "Paper"
+
+[node name="Sissors_Btn" parent="Plr_Buttons" instance=ExtResource("2_lscts")]
+offset_top = 300.0
+offset_bottom = 400.0
+toggle_mode = true
+button_group = ExtResource("5_wuawq")
+text = "Sissors"
+
+[node name="Scoreboard" type="Node2D" parent="."]
+position = Vector2(750, 25)
+
+[node name="Your_Score" type="Label" parent="Scoreboard"]
+offset_top = 100.0
+offset_right = 200.0
+offset_bottom = 150.0
+theme_override_font_sizes/font_size = 35
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="Scoreboard"]
+offset_top = 200.0
+offset_right = 200.0
+offset_bottom = 250.0
+theme_override_font_sizes/font_size = 30
+text = "Score"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Opp_Score" type="Label" parent="Scoreboard"]
+offset_top = 300.0
+offset_right = 200.0
+offset_bottom = 350.0
+theme_override_font_sizes/font_size = 35
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Plr_Buttons/Rock_Btn" to="Play_Area/Selection_Announcer" method="_on_rock_btn_pressed"]
+[connection signal="pressed" from="Plr_Buttons/Paper_btn" to="Play_Area/Selection_Announcer" method="_on_paper_btn_pressed"]
+[connection signal="pressed" from="Plr_Buttons/Sissors_Btn" to="Play_Area/Selection_Announcer" method="_on_sissors_btn_pressed"]

@@ -11,8 +11,14 @@ config_version=5
 [application]
 
 config/name="RockPaperSissors"
+run/main_scene="res://scenes/main.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1000
+window/size/viewport_height=500
 
 [dotnet]
 
@@ -20,4 +26,5 @@ project/assembly_name="RockPaperSissors"
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
